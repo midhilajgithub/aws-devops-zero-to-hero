@@ -1,11 +1,11 @@
-#!/bin/bash
+ #!/bin/bash
 set -e
 set -x
 set +x
 
 # Install jq
 sudo apt-get update
-sudo apt autoremove
+sudo apt autoremove -y
 sudo apt-get install --only-upgrade docker-ce
 sudo apt-get update
 sudo apt-get install -y jq

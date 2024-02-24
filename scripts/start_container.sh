@@ -16,9 +16,11 @@ DOCKER_PASSWORD=$(echo $DOCKER_CREDENTIALS | jq -r .password)
 DOCKER_URL=$(echo $DOCKER_CREDENTIALS | jq -r .url)
 
 # Authenticate Docker to ECR
+echo DOCKER_USERNAME: $DOCKER_USERNAME""
 aws ecr get-login-password --region ap-south-1 | docker login --username "$DOCKER_USERNAME" --password-stdin "$DOCKER_URL"
 
 # Pull the Docker image from Docker Hub
+echo "DOCKER_URL: $DOCKER_URL"
 docker pull "$DOCKER_URL"/simple_python_app:latest
 
 # Run the Docker image as a container

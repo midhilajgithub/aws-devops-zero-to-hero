@@ -1,5 +1,11 @@
 #!/bin/bash
 set -e
+set -x
+set +x
+
+# Install jq
+sudo apt-get update
+sudo apt-get install -y jq
 
 DOCKER_CREDENTIALS=$(aws secretsmanager get-secret-value --secret-id docker_Secrets_manager_credentials --region ap-south-1 --output json | jq -r .SecretString)
 DOCKER_USERNAME=$(echo $DOCKER_CREDENTIALS | jq -r .username)
